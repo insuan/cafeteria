@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+
+    </style>
+<body>
+    
+</body>
+    <script>
+        document.addEventListener("DOMContentLoaded", mostrarDatos);
+
+        function mostrarDatos(){
+            const appID = "14ed305681dc75e8474b370c390d7c2b";
+            const url = `api.openweathermap.org/data/2.5/weather?q={'Buenos Aires'},{AR}&appid=${appID}`;
+
+            // console.log(url);
+
+            fetch(url)
+                .then(consulta => consulta.json())
+                .then(datos => console.log(datos))
+                .catch(error => console.log(error))
+        }
+    </script>
+</html>
