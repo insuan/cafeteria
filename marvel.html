@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+
+    </style>
+<body>
+    <section class="contenedor">
+
+    </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", cargarJSON)    
+            
+            const contenido = document.querySelector(".contenedor");
+
+            function cargarJSON(){
+                const url = "https://gateway.marvel.com:443/v1/public/characters?ts=1&apikey=b8cc42265f6ccb0ab35a07bd6207fc1a&hash=b007a27877ad269266215c3f6236a922"
+                fetch(url)
+                    .then(consulta => consulta.json())
+                    .then(datos => mostrarDatos(datos,contenido))
+                    // .then(datos => console.log(datos))
+                    .catch(error => console.log(error))
+            }
+            
+        
+        
+            function mostrarDatos(informacion){
+                const {data : {results}} = informacion;
+
+                html = ""
+
+                // console.log(results);
+                
+                for (let i=0; i < results.length; i++){
+
+                    html += `${results[i].name}${results[i].modified}.<br><br>`
+                }
+
+                contenido.innerHTML = html;
+                
+        
+            }        
+    
+        
+    </script>
+</body>
+</html>

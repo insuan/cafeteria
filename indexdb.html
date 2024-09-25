@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+    <script>
+        let bd;
+
+        window.addEventListener("load", () => {
+            iniciarBD();
+        })
+
+        function iniciarBD(){
+            let solicitud = indexedDB.open("Tenis",1);
+
+            solicitud.addEventListener("error",mostrarError);
+            solicitud.addEventListener("success",comenzar);
+
+        }
+
+        function mostrarError(evento){
+            console.log(evento.code);
+        }
+
+        function comenzar(evento){
+            console.log(evento.target.result);
+        }
+    </script>
+</html>

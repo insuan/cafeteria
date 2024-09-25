@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .contenedor{
+            max-width: 600px;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        #datos{
+            background-color: red;
+        }
+
+        .text-center{
+            text-align: center;
+        }
+    </style>
+    <form action="">
+        <input type="button" id="txt" value="ObtenerTXT">
+    </form>
+    <section class="contenedor">
+        <div id="datos" class="text-center"></div>
+    </section>
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#txt").click(function(){
+            const url = "jugadores.json";
+
+            fetch(url)
+                .then( resultado => {
+                    return resultado.json();
+                })
+
+                .then ( datos => {
+                    mostrarHTML( datos );
+                })
+
+                .catch (error => {
+                    console.log(error);
+                })
+            
+        })
+
+        function mostrarHTML(informacion){
+            const contenido = document.querySelector("#datos");
+
+            let miHTML = "";
+
+            informacion.forEach(element => {
+                const {nombre,apellido,pais} = element;
+
+                miHTML += `<p>Nombre: ${nombre} </p>
+                         <p>Apellido: ${apellido} </p>
+                         <p>Pais: ${pais} </p><br>
+                        `        
+                // $(datos).text();
+            });
+
+            contenido.innerHTML = miHTML;
+        }
+    })
+</script>
+</html>

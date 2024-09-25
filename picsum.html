@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .contenedor{
+        max-width: 600px;
+        width: 90%;
+        margin: 0 auto;
+        background-color: lightblue;
+    }
+
+    .text-center{
+        text-align: center;
+    }
+
+    body{
+        background-color: gray;
+    }
+
+</style>
+<body>
+    <center>
+        <section>
+            <input type="button" id="btn" name="btn" value="Consultar">
+            <input type="button" id="btnLimpiar" name="btnLimpiar" value="Limpiar">
+        </section>
+    </center>
+    <section></section>
+        <div class="contenedor text-center contenido"></div>
+    </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const btn = document.querySelector("#btn");
+            const btnLimpiar = document.querySelector("#btnLimpiar");
+            const contenido = document.querySelector(".contenido");
+
+            btn.addEventListener("click", mostrarJson);
+            btnLimpiar.addEventListener("click", limpiarHtml);
+
+            function mostrarJson(){
+                const url = "https://picsum.photos/list";
+
+                fetch(url)
+                    .then(consulta => consulta.json())
+                    .then(datos => mostrarDatos(datos))
+            }
+
+            function mostrarDatos(informacion){
+                
+                let html = "";
+
+                informacion.forEach(element => {
+                    const {author, post_url} = element;
+
+                    html += `
+                                <p> Author: ${author} </p>
+                                <a href="${post_url}" target="_blank">Ver imagen</a>
+                    `
+                });
+
+                contenido.innerHTML = html;
+            }
+
+            function limpiarHtml(){
+                while(contenido.firstChild){
+                    contenido.removeChild(contenido.firstChild)
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .spinner {
+        margin: 40px auto;
+        width: 100px;
+        height: 70px;
+        text-align: center;
+        font-size: 10px;
+    }
+
+    .spinner > div {
+        background-color: red;
+        height: 100%;
+        width: 6px;
+        display: inline-block;
+        
+        -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+        animation: sk-stretchdelay 1.2s infinite ease-in-out;
+    }
+
+    .spinner .rect2 {
+        -webkit-animation-delay: -1.1s;
+        animation-delay: -1.1s;
+    }
+
+    .spinner .rect3 {
+        -webkit-animation-delay: -1.0s;
+        animation-delay: -1.0s;
+    }
+
+    .spinner .rect4 {
+        -webkit-animation-delay: -0.9s;
+        animation-delay: -0.9s;
+    }
+
+    .spinner .rect5 {
+        -webkit-animation-delay: -0.8s;
+        animation-delay: -0.8s;
+    }
+
+    @-webkit-keyframes sk-stretchdelay {
+        0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+        20% { -webkit-transform: scaleY(1.0) }
+    }
+
+    @keyframes sk-stretchdelay {
+        0%, 40%, 100% { 
+            transform: scaleY(0.4);
+            -webkit-transform: scaleY(0.4);
+    }  20% { 
+            transform: scaleY(1.0);
+            -webkit-transform: scaleY(1.0);
+    }
+    }
+    .contenido{
+        max-width: 600px;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .text-center{
+        text-align: center;
+    }
+
+    .hidden{
+        display: none;
+    }
+
+</style>
+<body>
+    <section class="contenido text-center">
+     </section>
+     <section>
+        <center><input type="button" id="btn" value="Actualizar"></center>
+     </section>
+        <div class="spinner hidden">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+        </div>
+</body>
+    <script>
+        window.addEventListener("load", consultarJSON)
+        const spinner = document.querySelector(".spinner");
+        const hidden = document.querySelector(".hidden");
+        const contenido = document.querySelector(".contenido");
+        const btn = document.querySelector("#btn");
+
+        btn.addEventListener("click", consultarJSON);
+
+        function consultarJSON(){
+            // limpiarHTML();
+            const url = "https://api.bluelytics.com.ar/v2/latest";
+
+            fetch(url)
+                .then(consulta => consulta.json())
+                .then(datos => mostrarDatos(datos))
+                .catch(error => console.log(error))
+        }
+
+        function mostrarDatos(informacion){
+            const {blue} = informacion; 
+
+            let html = "";
+            let hora = capturarHora();
+
+            html += `
+                    Dolar Blue <br><br>
+                    Precio Promedio - ${blue.value_avg} <br>
+                    Precio Venta - ${blue.value_sell} <br>
+                    Precio Compra - ${blue.value_buy} <br><br>
+                    Actualizacion - ${hora}<br> <br>
+
+            `
+
+            contenido.innerHTML = html;
+
+            mostrarSpinner();
+
+            // console.log("Dolar Blue")
+            // console.log(`Valor:Promedio - ${blue.value_avg}`);
+            // console.log(`Valor:Venta - ${blue.value_sell}`);
+            // console.log(`Valor:Compra - ${blue.value_buy}`);
+        }
+
+        function capturarHora(){
+            dia = new Date();
+
+            valor = dia;
+
+            return valor.toLocaleString()
+        }
+
+        function limpiarHTML(){
+            while(contenido.firstChild){
+                contenido.removeChild(contenido.firstChild)
+            }
+        }
+
+        function mostrarSpinner(){
+            spinner.classList.remove("hidden");
+
+            setTimeout(() => {
+                spinner.classList.add("hidden");
+            }, 3000);
+        }
+
+    </script>
+</html>

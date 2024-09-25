@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+        .contenedor{
+            max-width: 1200px;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .text-center{
+            text-align: center;
+        }
+
+        #reloj{
+            font-size: 50px;
+        }
+
+        .borde{
+            border-radius: 20px;
+            background-color: chocolate;
+            padding: 50px 0;
+        }
+    </style>
+<body>
+    <section class="text-center contenedor borde">
+        <header>
+            <h1>Cuanto falta para terminar el dia 17:00 HS?</h1>
+        </header>
+        <div id="reloj">
+            <div id="dias"></div>
+            <div id="horas"></div>
+            <div id="minutos"></div>
+            <div id="segundos"></div>
+        </div>
+    </section>
+</body>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const reloj = document.querySelector("#reloj");
+            const dias = document.querySelector("#dias");
+            const horas = document.querySelector("#horas");
+            const minutos = document.querySelector("#minutos");
+            const segundos = document.querySelector("#segundos");
+        
+
+        let fecha = new Date("09/24/24 17:00:00");
+        msFecha = fecha.getTime();
+
+        let intervalo = setInterval(() => {
+            let hoy = new Date().getTime();
+            let html = "";
+
+            let diferencia = msFecha - hoy;
+
+            let msPorDia = 1000 * 60 * 60 * 24;
+            let msPorHora = 1000 * 60 * 60;
+            let msPorMinuto = 1000 * 60;
+            let msPorSegundo = 1000;
+
+            let dias = Math.floor(diferencia / msPorDia);
+            let horas = Math.floor((diferencia % msPorDia) / msPorHora);
+            let minutos = Math.floor((diferencia % msPorHora) / msPorMinuto);
+            let segundos = Math.floor((diferencia % msPorMinuto) / msPorSegundo);
+
+            html += `<strong>Dias: ${dias}</strong> <br> 
+                    Horas: ${horas} <br> 
+                    Minutos: ${minutos} <br> 
+                    Segundos: ${segundos}`
+            
+            reloj.innerHTML = html;
+
+            if(diferencia < 0){
+                clearInterval(intervalo);
+                reloj.textContent = "Jornada Terminada. Descansa"
+            }
+
+        }, 1000);
+
+    })    
+
+    </script>
+</html>

@@ -1,0 +1,31 @@
+#	MR	Jugador	Edad	País	Pts	+/-	Torneo Actual	Torneos Anteriores	Sig.	Máx
+1	MR		Jannik Sinner	23	ITA	11180		
+2	MR		Alexander Zverev	27	GER	7075		
+3	1		Carlos Alcaraz	21	ESP	6690			Copa Davis (1 G / 0 D) 		
+4	1		Novak Djoković	37	SRB	5560		
+5	1		Daniil Medvedev	28	RUS	5475		
+6	5		Andrey Rublev	26	RUS	4645		
+7	5		Taylor Fritz	26	USA	4060		
+8	6		Hubert Hurkacz	27	POL	4060		
+9	2		Casper Ruud	25	NOR	4010		
+10	3		Grigor Dimitrov	33	BUL	3965		
+11	6		Alex de Minaur	25	AUS	3655		
+12	3		Stefanos Tsitsipas	26	GRE	3390		
+13	12		Tommy Paul	27	USA	3005		
+14	4		Holger Rune	21	DEN	2780		
+15	MR		Sebastian Korda	24	USA	2585		
+16	10		Frances Tiafoe	26	USA	2560		
+17	13		Ben Shelton	21	USA	2490		
+18	13		Ugo Humbert	26	FRA	2370			Copa Davis (1 G / 0 D) 		
+19	15		Lorenzo Musetti	22	ITA	2345		
+20	MR		Jack Draper	22	GBR	2315		
+21	6		Félix Auger-Aliassime	24	CAN	2170			Copa Davis (2 G / 0 D) 		
+22	19		Alejandro Tabilo	27	CHI	1963			Copa Davis (0 G / 2 D) 		
+23	8		Karen Khachanov	28	RUS	1930		
+24	23		Alexei Popyrin	25	AUS	1825			Copa Davis (1 G / 1 D) 		
+25	20		Arthur Fils	20	FRA	1775			Copa Davis (0 G / 1 D) 		
+26	18		Sebastián Báez	23	ARG	1760			Copa Davis (0 G / 1 D) 		
+27	17		Alexander Bublik	27	KAZ	1650		
+28	16		Nicolás Jarry	28	CHI	1595		
+29	MR		Jordan Thompson	30	AUS	1566		
+30	MR		Nuno Borges	27	POR	1515
